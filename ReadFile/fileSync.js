@@ -2,14 +2,14 @@ import fs from 'node:fs'
 
 console.log('Leyendo archivo');
 
-const data = fs.readFileSync('file.txt', { encoding: 'utf8' })
+const data = fs.readFileSync('../file.txt', { encoding: 'utf8' })
 console.log(data);
 
 console.log('me ejecuto solo si la data se lee');
 
-const data2 = fs.readFileSync('text.txt', { encoding: 'utf8' })
+const data2 = fs.readFileSync('../text.txt', { encoding: 'utf8' })
 console.log(data2);
-const stats = fs.statSync('file.txt')
+const stats = fs.statSync('../file.txt')
 
 console.log(
     stats.isFile(),
