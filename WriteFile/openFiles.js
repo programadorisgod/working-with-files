@@ -9,15 +9,22 @@ fs.appendFile('data.txt', info, 'utf-8')
     .catch((err) => console.log(`Se produjo un error ${err}`))
 
 
-fs.open('data.txt', 'r')
+fs.open('../text.txt', 'r')
     .then((fd) => {
-        console.log('fd');
-        fd.close()
+
+        const buffer = Buffer.alloc(1024)
+        fd.read({ buffer, length: 1024, offset: 0, position: 0 })
+            .then(data => {
+                console.log(`Contenido leido: ${data.buffer.toString()}`)
+                console.log(`Bytes leidos: ${data.bytesRead}`)
+
+            })
+        return fd.close()
             .then(console.log('archivo cerrado'))
             .catch(() => console.log('Ocurrio un error'))
     }).catch(() => console.log('Ocurrio un error'))
 
 
-fs.writeFile('newFile.txt', info, { encoding: 'utf-8', signal })
+fs.writeFile('new2File.txt', info, { encoding: 'utf-8', signal })
     .then(() => console.log('Data insertada correctamente'))
     .catch((err) => console.log('Ocurrio un error' + err))
